@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "name": "Mnemonic: dummy test mnemonic",
+  "id": "23f17984-b3ef-47ce-aed6-55756b8b5249",
+  "crypto": {
+    "symmetric_alg": "xsalsa20-poly1305",
+    "secret_type": "ed25519-bip39-mnemonic",
+    "kdf_params": {
+      "salt": "49216E267465937DFEB7CEC2376AECFE",
+      "opslimit": 3,
+      "memlimit_kib": 65535
+    },
+    "kdf": "argon2id",
+    "ciphertext": "C6890BF741C05619043D07011D56B34627BD9615FA3F39AB8FA2F06E79502AD4F70E0918285A9ED6DADC75182797ABF5B343A2"
+  }
+}

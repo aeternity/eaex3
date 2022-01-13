@@ -1,14 +1,10 @@
 {application, eaex3,
- [{description, "An OTP library"},
-  {vsn, "0.1.0"},
+ [{description, "Implementing AEX-3 - Aeternity secret storage format"},
+  {vsn, "1.0.0"},
   {registered, []},
-  {applications,
-   [kernel,
-    stdlib
-   ]},
+  {applications, [kernel, stdlib]},
   {env,[]},
-  {modules, []},
-
-  {licenses, ["Apache 2.0"]},
+  {modules, [eaex3]},
+  {licenses, ["ISC"]},
   {links, []}
  ]}.

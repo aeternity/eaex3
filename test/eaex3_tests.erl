@@ -15,14 +15,15 @@ read_masterkey_test() ->
   ?assertEqual(<<129,202,147,202,135,167,200,243,64,47,71,28,218,251,133,100,
                  187,128,241,104,12,186,31,154,77,162,201,55,141,31,134,238>>, maps:get(message, Secret)).
 
-roundtrip_test() ->
-  Test = fun() ->
+roundtrip_test_() ->
+  Test = fun(Algo) ->
             Key = crypto:strong_rand_bytes(32),
-            JSON = eaex3:create_masterkey(Key, "", "PASSWORD"),
+            JSON = eaex3:create_masterkey(Key, "", Algo, "PASSWORD"),
             {ok, Secret} = eaex3:decrypt(JSON, "PASSWORD"),
             ?assertEqual(Key, maps:get(message, Secret))
          end,
-  [ Test() || _ <- lists:seq(1, 10) ].
+  [ fun() -> Test(A) end  || _ <- lists:seq(1, 5), A <- [{pbkdf2, xsalsa20_poly1305}, {argon2id, xsalsa20_poly1305},
+                                                         {pbkdf2, chacha20_poly1305}, {argon2id, chacha20_poly1305}] ].
 
 bad_files_test() ->
   ?assertEqual({error, {missing_info,"version"}},
@@ -59,6 +60,8 @@ bad_files_test() ->
                eaex3:read("test/data/bad/bad_kdf.json", "PASSWORD")),
   ?assertEqual({error, {bad_kdf_params,"Expected: memlimit_kib, opslimit and salt"}},
                eaex3:read("test/data/bad/bad_kdf_params.json", "PASSWORD")),
+  ?assertEqual({error, {bad_kdf_params,"Expected: c, dklen, prf and salt"}},
+               eaex3:read("test/data/bad/bad_kdf_params2.json", "PASSWORD")),
   ?assertEqual({error, {bad_format,"'crypto/kdf_params/salt' should be hexadecimal"}},
                eaex3:read("test/data/bad/bad_salt.json", "PASSWORD")),
   ok.

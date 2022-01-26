@@ -1,6 +1,6 @@
 [{<<"enacl">>,
   {git,"https://github.com/aeternity/enacl.git",
-       {ref,"01dd0c2ceb304ff8656ad51f8008739bc45d91fa"}},
+       {ref,"38ffc761096c18d552b9b1037daff4de7bbe2eca"}},
   0},
  {<<"erlang-uuid">>,
   {git,"https://github.com/avtobiff/erlang-uuid.git",

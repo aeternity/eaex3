@@ -1,6 +1,6 @@
 [{<<"enacl">>,
   {git,"https://github.com/aeternity/enacl.git",
-       {ref,"38ffc761096c18d552b9b1037daff4de7bbe2eca"}},
+       {ref,"a3d010ba62c46c498dc760f289c7b7cad995b3b9"}},
   0},
  {<<"epbkdf2">>,
   {git,"https://github.com/aeternity/epbkdf2",
